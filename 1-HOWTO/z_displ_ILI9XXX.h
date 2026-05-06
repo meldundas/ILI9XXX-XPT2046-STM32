@@ -40,11 +40,11 @@
 /******************    STEP 0    ******************
  *** if mapping flash on the uC addresses space ***
  ********** uncomment the below #define ***********
- ******** end assign it the correct value *********
+ ******** and assign it the correct value *********
  ***** If external flash handled by TOUCHGFX,******
  ************* let #define commented **************
  **************************************************/
-#define EXT_FLASH_BASEADDRESS 0X90000000 // mapped flash base address
+//#define EXT_FLASH_BASEADDRESS 0X90000000 // mapped flash base address
 
 
 /*****************     STEP 1      *****************
@@ -108,7 +108,7 @@
  * let timer clock to be higher than COUNTER PERIOD * 100 Hz.
  * Set all other defines below 
  ***************************************************/
-#define DISPLAY_DIMMING_MODE						// uncomment this define to enable dimming function otherwise there is an on/off switching function
+//#define DISPLAY_DIMMING_MODE						// uncomment this define to enable dimming function otherwise there is an on/off switching function
 #define BKLIT_TIMER 				TIM2			//timer used (PWMming DISPL_LED pin)
 #define BKLIT_T 					htim2			//timer used
 #define BKLIT_CHANNEL				TIM_CHANNEL_1	//channel used
