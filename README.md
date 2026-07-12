@@ -10,6 +10,24 @@ _**Below English text you'll find the Italian version</i>**_
 
 # ILI9XXX/XPT2046-STM32
 
+## Fork additions: ST7796 + FT6336U capacitive touch
+
+This fork extends the upstream library with:
+
+- **ST7796** display support (`#define ST7796` in `z_displ_ILI9XXX.h`) — 320x480
+  4.0" SPI modules (e.g. LCDwiki MSP4030/MSP4031). The ST7796 shares the
+  ILI9341 command set; RGB565 over 4-wire SPI, DMA mode supported.
+- **FT6336U capacitive touch** driver (`z_ft6336.c/.h`) — I2C (address 0x38),
+  hardware I2C via HAL (`hi2c1`), multi-touch (2 points), no calibration needed.
+  Used instead of the XPT2046 on capacitive-touch modules.
+- Default config in `1-HOWTO/z_displ_ILI9XXX.h` targets a Nucleo-F446RE:
+  SPI1, backlight PWM on TIM3 CH1, dimming enabled.
+
+Tested on: Nucleo-F446RE + 4.0" ST7796/FT6336U module (SPI1 @ 45 MBit/s + DMA).
+
+---
+
+
 "ILI9XXX/XPT2046-STM32" repository contains the source code of a set of functions for an STM32 microcontroller handling a ILI9341-based 240x320 and ILI9488-based 320x480 touch display.<br>
 Three modes available using the library:
 -	<b>Direct Display Handling</b>:<br>

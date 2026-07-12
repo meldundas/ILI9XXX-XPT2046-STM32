@@ -40,7 +40,7 @@
 /******************    STEP 0    ******************
  *** if mapping flash on the uC addresses space ***
  ********** uncomment the below #define ***********
- ******** and assign it the correct value *********
+ ******** end assign it the correct value *********
  ***** If external flash handled by TOUCHGFX,******
  ************* let #define commented **************
  **************************************************/
@@ -60,7 +60,8 @@
  *************************************************/
 //#define ILI9341
 //#define ILI9488_V1
-#define ILI9488_V2
+//#define ILI9488_V2
+#define ST7796
 
 
 /******************    STEP 3    ******************
@@ -68,8 +69,8 @@
  ** properly set the below th 2 defines to address
  ********  the SPI port defined on CubeMX *********
  **************************************************/
-#define DISPL_SPI_PORT 	hspi2
-#define DISPL_SPI 		SPI2
+#define DISPL_SPI_PORT 	hspi1
+#define DISPL_SPI 		SPI1
 
 
 /******************    STEP 4     ******************
@@ -108,13 +109,13 @@
  * let timer clock to be higher than COUNTER PERIOD * 100 Hz.
  * Set all other defines below 
  ***************************************************/
-//#define DISPLAY_DIMMING_MODE						// uncomment this define to enable dimming function otherwise there is an on/off switching function
-#define BKLIT_TIMER 				TIM2			//timer used (PWMming DISPL_LED pin)
-#define BKLIT_T 					htim2			//timer used
+#define DISPLAY_DIMMING_MODE						// uncomment this define to enable dimming function otherwise there is an on/off switching function
+#define BKLIT_TIMER 				TIM3			//timer used (PWMming DISPL_LED pin)
+#define BKLIT_T 					htim3			//timer used
 #define BKLIT_CHANNEL				TIM_CHANNEL_1	//channel used
 #define BKLIT_CCR					CCR1			//Capture-compare register used (same number as channel)
 #define BKLIT_STBY_LEVEL 			50				//Display backlight level when in stand-by (levels are CNT values)
-#define BKLIT_INIT_LEVEL 			100				//Display backlight level on startup
+#define BKLIT_INIT_LEVEL 			99				//Display backlight level on startup
 
 
 /*****************     STEP 7      *****************
@@ -130,8 +131,8 @@
  * if not in TouchGFX-full-mode: assign macros to 
  * an unused timer
  ***************************************************/
-#define TGFX_TIMER			TIM3
-#define TGFX_T				htim3
+#define TGFX_TIMER			TIM2
+#define TGFX_T				htim2
 
 
 /*****************     STEP 8      *****************
@@ -151,7 +152,7 @@
  * TouchGFX buffers>2700bytes need BUFLEVEL 13
  * TouchGFX buffers>1300bytes need BUFLEVEL 12
 ***************************************************/
-#define BUFLEVEL 11
+#define BUFLEVEL 15
 
 /*|||||||| END OF USER/PROJECT PARAMETERS ||||||||*/
 
@@ -180,7 +181,9 @@
 #ifdef ILI9488_V2
 #define Z_RGB565
 #endif
-
+#ifdef ST7796
+#define Z_RGB565
+#endif
 
 /***************   display size      ***************
  ***************************************************/
@@ -192,8 +195,10 @@
 #define DISPL_WIDTH  320		// 0 orientation
 #define DISPL_HEIGHT 480		// 0 orientation
 #endif
-
-
+#ifdef ST7796
+#define DISPL_WIDTH  320		// 0 orientation
+#define DISPL_HEIGHT 480		// 0 orientation
+#endif
 /************* from POLLING to DMA *****************
  *** below DISPL_DMA_CUTOFF data size, transfer ****
  ****** will be polling, even if DMA enabled *******
